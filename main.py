@@ -8,7 +8,7 @@ def read_operator_rate_file(filename):
     The variable filename contains the name of csv with operator list"""
     try:
         with open(filename, newline='') as f:
-            return list(csv.reader(f))
+            return list(csv.reader(f))  # read each row as a list and store it in a list
     except FileNotFoundError as errorcode:
         print(errorcode)
 
@@ -22,6 +22,9 @@ def get_input():
     while True:
         try:
             phone_number_to_dial = input("Enter phone number>> ")
+            """check if the input starts with a '+' sign, then all digits except for first should be integer. 
+            Since the input with '+' is considered as String parse one character at a time and check if they are ints. 
+            """
             assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[
                                                              1:].isdigit()) or phone_number_to_dial[
                                                                                :].isdigit(), 'Invalid phone number'
@@ -41,13 +44,17 @@ def get_max_extention_length(rate_list):
 
 
 def extract_operator_extention(input_number):
-    """This funstion checks if the extention entered by the user is in the Rate List or not.
+    """This function checks if the extention entered by the user is in the Rate List or not.
     If present, then returns the extention otherwise send an message if that the operator is not valid
     """
     extention_to_dial = "Operator not found"
     if input_number[0] == '+':
-        for x in range(max_extention_length + 1, 0, -1):
-            if str(input_number[1:x]) in extention_codes_list:
+        for x in range(max_extention_length + 1, 1, -1):
+            """Breaking the phone number into extention and number. 
+            Read the input in reverse order starting from the max extention length in the rate list.
+            This is to avoid taking operators based on first digit alone."""
+            if str(input_number[
+                   1:x]) in extention_codes_list:  # check if parsed string is a operator by checking the extention list
                 extention_to_dial = input_number[1:x]
                 break
     else:
@@ -62,11 +69,11 @@ def cheapest_call_rate(dialing_operator):
     """Function to get all possible operators who allow calling to a certain extention
     The allowed operators list will contain a list of lists in the format [extention, rate, operator]
     """
-    allowed_operators = []
+    allowed_operators = []  # List to store the operators which allow calling to the desired extention
     for i in rate_list:
         if str(i[0]) == dialing_operator:
             allowed_operators.append(i)
-    return min(allowed_operators)
+    return min(allowed_operators)  # Return only the lsit with min rate
 
 
 if __name__ == '__main__':
