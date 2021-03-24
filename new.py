@@ -10,7 +10,7 @@ def get_input():
     while True:
         try:
             phone_number_to_dial = input("Enter phone number>> ")
-            assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[1:].isdigit()) or  phone_number_to_dial[:].isdigit(), 'Invalid phone number, Enter again or press ctrl+c to exit'
+            assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[1:].isdigit()) or  phone_number_to_dial[:].isdigit(), 'Invalid phone number'
         except Exception as e:
             print(e)
         else:
@@ -21,6 +21,7 @@ def get_max_extention_length(rate_list):
     return extention_codes_list,len(max(extention_codes_list, key=len))
 
 def extract_operator_extention(input_number):
+    extention_to_dial = "Operator not found"
     if input_number[0] == '+':
         for x in range(max_extention_length + 1, 0, -1):
             if str(input_number[1:x]) in extention_codes_list:
@@ -47,6 +48,9 @@ if __name__ == '__main__':
     extention_codes_list,max_extention_length = get_max_extention_length(rate_list)
     input_number = get_input()
     dialing_operator = extract_operator_extention(input_number)
+    if dialing_operator == "Operator not found":
+        print(dialing_operator)
+        exit()
     price = cheapest_call_rate(dialing_operator)[1]
     operator = cheapest_call_rate(dialing_operator)[2]
     print("cheapest price is", price, "with the operator", operator)
