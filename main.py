@@ -28,6 +28,7 @@ def get_input():
             assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[
                                                              1:].isdigit()) or phone_number_to_dial[
                                                                                :].isdigit(), 'Invalid phone number'
+            assert len(phone_number_to_dial)>9,'Phone number too short'
         except Exception as e:
             print(e)
         else:
