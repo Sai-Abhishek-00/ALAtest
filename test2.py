@@ -9,26 +9,46 @@ class test_code(unittest.TestCase):
         self.input_string_with_numbers = random.randint(99,999999999999999)
         self.test_list = [['25310', '4', 'd'], ['2860', '0.04', 'd'],
                           ['348', '0.4', 'd'], ['2860', '4', 't'],
-                          ['2860', '1.23', 'v'], ['405.0', '4', 'a'],
+                          ['2860', '1.23', 'v'], ['405.0', '3', 'a'],
                           ['2860', '0.15', 'a'], ['4050', '4', 's'],
-                          ['2860', '10', 's'], ['01', '4', 'a'],]
+                          ['2860', '1.0', 's'], ['01', '4', 'a'],]
+        self.rate_list = [['1', '0.9', 'a'], ['268', '5.1', 'a'],
+                          ['46', '0.17', 'a'], ['4620', '0', 'a'],
+                          ['468', '0.15', 'a'], ['4631', '0.15', 'a'],
+                          ['4673', '0.9', 'a'], ['46732', '1.1', 'a'],
+                          ['1', '0.92', 'b'], ['44', '0.5', 'b'],
+                          ['46', '0.2', 'b'], ['467', '1', 'b'],
+                          ['48', '1.2', 'b'], ['46', '0.01', 'c']]
+        self.test_file_name = 'test_scenarios.csv'
+        self.rate_file_name = 'rate_list.csv'
 
 
     def test_input(self):
+        #to check if input if being read correctly
         result = get_input(str(self.input_string_with_numbers))
         self.assertTrue(result, str(self.input_string_with_numbers))
 
+    def test_read(self):
+        #test if the file is loading correctly
+        resultread=list(read_operator_rate_file(self.rate_file_name))
+        self.assertEqual(resultread,self.rate_list)
+
     def test_searching_alg(self):
+        #for a extention with multiple operators
         phone_number = '2860354886'
         result = search_alg(self.test_list, phone_number)
         self.assertEqual(result, None)
 
-    def test_searching_alg(self):
-        phone_number = '4050354886'
+    def test_searching_alg1(self):
+        #for a extention with decimal operator
+        phone_number = '4050'
         result = search_alg(self.test_list, phone_number)
         self.assertEqual(result, None)
 
-    def test_searching_alg(self):
+    def test_searching_alg3(self):
         phone_number = '4051354886'
         result = search_alg(self.test_list, phone_number)
         self.assertEqual(result, None)
+
+if __name__ == '__main__':
+    unittest.main()

@@ -19,24 +19,21 @@ def get_input(phone_number_to_dial):
     May start with '+' or only digits
     Added conditions to check for strings or other invalid variables in the input
     """
-    while True:
-        try:
-
-            """check if the input starts with a '+' sign, then all digits except for first should be integer. 
-            Since the input with '+' is considered as String parse one character at a time and check if they are ints. 
-            """
-            assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[
-                                                             1:].isdigit()) or phone_number_to_dial[
-                                                                               :].isdigit(), 'Invalid phone number'
-            assert len(
-                phone_number_to_dial) > 2, 'Phone number too short'
-            # had this at 9 but changed it to 2 for calling 112
-            assert len(phone_number_to_dial) < 16, 'Phone number too long'
-        except Exception as e:
-            print(e)
-            exit()
-        else:
-            return (phone_number_to_dial)
+    try:
+        """check if the input starts with a '+' sign, then all digits except for first should be integer. 
+        Since the input with '+' is considered as String parse one character at a time and check if they are ints. 
+        """
+        assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[
+                                                         1:].isdigit()) or phone_number_to_dial[
+                                                                           :].isdigit(), 'Invalid phone number'
+        assert len(phone_number_to_dial) > 2, 'Phone number too short'
+        # had this at 9 but changed it to 2 for calling 112
+        assert len(phone_number_to_dial) < 16, 'Phone number too long'
+    except Exception as e:
+        print(e)
+        exit()
+    else:
+        return (phone_number_to_dial)
 
 
 def search_alg(rate_list, input_number):
