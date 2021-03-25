@@ -29,7 +29,8 @@ def get_input():
                                                              1:].isdigit()) or phone_number_to_dial[
                                                                                :].isdigit(), 'Invalid phone number'
             assert len(
-                phone_number_to_dial) > 2, 'Phone number too short'  # had this at 9 but changed it to 2 for calling 112
+                phone_number_to_dial) > 2, 'Phone number too short'
+            # had this at 9 but changed it to 2 for calling 112
             assert len(phone_number_to_dial) < 16, 'Phone number too long'
         except Exception as e:
             print(e)
@@ -83,24 +84,29 @@ def print_output():
     """"Function to print output with conditions"""
     try:
         extention_dialing = cheapest_call_rate(dialing_operator)[0]
-        price = cheapest_call_rate(dialing_operator)[1]  # Store the cheapest price for a certain extention
-        operator = cheapest_call_rate(dialing_operator)[
-            2]  # Store the operator with cheapest price for a certain extention
+        price = cheapest_call_rate(dialing_operator)[1]
+        # Store the cheapest price for a certain extention
+        operator = cheapest_call_rate(dialing_operator)[2]
+        # Store the operator with cheapest price for a certain extention
     except Exception as e:
         print(e)
     else:
-        print("To call the extention +",extention_dialing, "the cheapest price is", price, "with the operator", operator)  # Show the output.
+        print("To call the extention +", extention_dialing, "the cheapest price is", price, "with the operator",
+              operator)
+        # Show the output.
 
 
 if __name__ == '__main__':
-    filename = 'rate_list.csv'  # variable with csv filename
-    rate_list = read_operator_rate_file(
-        filename)  # rate list has the information from csv file, it contains all the [extention, rate, operator]
-    extention_codes_list, max_extention_length = get_max_extention_length(
-        rate_list)  # extention_code_list has only the allowed extentions by operator. This is to minimize operations on list of lists
-    input_number = get_input()  # store the user defined phone number for which the rate needs to be checked
-    dialing_operator = extract_operator_extention(
-        input_number)  # Store only the operator of the user entered phone number
+    filename = 'rate_list.csv'
+    # variable with csv filename
+    rate_list = read_operator_rate_file(filename)
+    # rate list has the information from csv file, it contains all the [extention, rate, operator]
+    extention_codes_list, max_extention_length = get_max_extention_length(rate_list)
+    # extention_code_list has only the allowed extentions by operator. This is to minimize operations on list of lists
+    input_number = get_input()
+    # store the user defined phone number for which the rate needs to be checked
+    dialing_operator = extract_operator_extention(input_number)
+    # Store only the operator of the user entered phone number
     if dialing_operator == "Operator not found":
         print(dialing_operator)
         exit()
