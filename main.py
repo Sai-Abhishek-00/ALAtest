@@ -99,7 +99,7 @@ def print_output():
 
 
 if __name__ == '__main__':
-    filename = 'rate_list.csv'
+    filename = 'test_scenarios.csv'
     # variable with csv filename
     rate_list = read_operator_rate_file(filename)
     # rate list has the information from csv file, it contains all the [extention, rate, operator]

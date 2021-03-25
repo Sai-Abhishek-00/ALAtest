@@ -90,8 +90,8 @@ def search_alg(rate_list, input_number):
         except Exception as e:
             print(e)
         else:
-            print("To call the extention +", extention_dialing, "the cheapest price is", price, "with the operator",
-                  operator)
+            print("To call the extention +", extention_dialing, " the cheapest price is ", price, " with the operator ",
+                  operator, sep='')
             # Show the output.
 
     extention_codes_list, max_extention_length = get_max_extention_length(rate_list)
@@ -106,7 +106,7 @@ def search_alg(rate_list, input_number):
 
 if __name__ == '__main__':
     # variable with csv filename
-    filename = 'rate_list.csv'
+    filename = 'test_scenarios.csv'
     # store the user defined phone number for which the rate needs to be checked
     phone_number_to_dial = input("Enter phone number>> ")
     input_number = get_input(phone_number_to_dial)
