@@ -11,6 +11,8 @@ def read_operator_rate_file(filename):
             return list(csv.reader(f))  # read each row as a list and store it in a list
     except FileNotFoundError as errorcode:
         print(errorcode)
+    except IOError:
+        print("Could not read file:"), filename
 
 
 def get_input():
