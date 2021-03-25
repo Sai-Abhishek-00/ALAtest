@@ -6,7 +6,8 @@ def read_operator_rate_file(filename):
     The variable filename contains the name of csv with operator list"""
     try:
         with open(filename, newline='') as f:
-            return list(csv.reader(f))  # read each row as a list and store it in a list
+            # read each row as a list and store it in a list
+            return list(csv.reader(f))
     except FileNotFoundError as errorcode:
         print(errorcode)
     except IOError:
@@ -91,7 +92,8 @@ def search_alg(rate_list, input_number):
                   operator, sep='')
             # Show the output.
 
-    extention_codes_list, max_extention_length = get_max_extention_length(rate_list)
+    extention_codes_list, max_extention_length = get_max_extention_length(
+        rate_list)
     # extention_code_list has only the allowed extentions by operator. This is to minimize operations on list of lists
     dialing_operator = extract_operator_extention(input_number)
     # Store only the operator of the user entered phone number
