@@ -28,7 +28,9 @@ def get_input():
             assert (phone_number_to_dial.startswith('+') and phone_number_to_dial[
                                                              1:].isdigit()) or phone_number_to_dial[
                                                                                :].isdigit(), 'Invalid phone number'
-            assert len(phone_number_to_dial)>9,'Phone number too short'
+            assert len(
+                phone_number_to_dial) > 2, 'Phone number too short'  # had this at 9 but changed it to 2 for calling 112
+            assert len(phone_number_to_dial) < 16, 'Phone number too long'
         except Exception as e:
             print(e)
         else:
@@ -80,12 +82,14 @@ def cheapest_call_rate(dialing_operator):
 def print_output():
     """"Function to print output with conditions"""
     try:
+        extention_dialing = cheapest_call_rate(dialing_operator)[0]
         price = cheapest_call_rate(dialing_operator)[1]  # Store the cheapest price for a certain extention
-        operator = cheapest_call_rate(dialing_operator)[2]  # Store the operator with cheapest price for a certain extention
+        operator = cheapest_call_rate(dialing_operator)[
+            2]  # Store the operator with cheapest price for a certain extention
     except Exception as e:
         print(e)
     else:
-        print("cheapest price is", price, "with the operator", operator)  # Show the output.
+        print("To call the extention +",extention_dialing, "the cheapest price is", price, "with the operator", operator)  # Show the output.
 
 
 if __name__ == '__main__':
