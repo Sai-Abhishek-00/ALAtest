@@ -77,7 +77,7 @@ def search_alg(rate_list, input_number):
         for i in rate_list:
             if str(i[0]) == dialing_operator:
                 allowed_operators.append(i)
-        return min(allowed_operators)  # Return only the lsit with min rate
+        return min(allowed_operators)  # Return only the list with min rate
 
     def print_output():
         """"Function to print output with conditions"""
