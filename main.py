@@ -77,6 +77,17 @@ def cheapest_call_rate(dialing_operator):
     return min(allowed_operators)  # Return only the lsit with min rate
 
 
+def print_output():
+    """"Function to print output with conditions"""
+    try:
+        price = cheapest_call_rate(dialing_operator)[1]  # Store the cheapest price for a certain extention
+        operator = cheapest_call_rate(dialing_operator)[2]  # Store the operator with cheapest price for a certain extention
+    except Exception as e:
+        print(e)
+    else:
+        print("cheapest price is", price, "with the operator", operator)  # Show the output.
+
+
 if __name__ == '__main__':
     filename = 'rate_list.csv'  # variable with csv filename
     rate_list = read_operator_rate_file(
@@ -89,6 +100,4 @@ if __name__ == '__main__':
     if dialing_operator == "Operator not found":
         print(dialing_operator)
         exit()
-    price = cheapest_call_rate(dialing_operator)[1]  # Store the cheapest price for a certain extention
-    operator = cheapest_call_rate(dialing_operator)[2]  # Store the operator with cheapest price for a certain extention
-    print("cheapest price is", price, "with the operator", operator)  # Show the output.
+    print_output()
