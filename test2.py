@@ -1,10 +1,10 @@
-import unittest
-import csv
 import random
+import unittest
+
 from Operator_searching import search_alg, get_input, read_operator_rate_file
 
 
-class test_code(unittest.TestCase):
+class test_Code(unittest.TestCase):
 
     def setUp(self):
         self.input_string_with_numbers = random.randint(99, 999999999999999)
